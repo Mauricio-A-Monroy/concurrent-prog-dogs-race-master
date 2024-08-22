@@ -10,9 +10,22 @@ Creación, puesta en marcha y coordinación de hilos.
 
 1. Revise el programa “primos concurrentes” (en la carpeta parte1), dispuesto en el paquete edu.eci.arsw.primefinder. Este es un programa que calcula los números primos entre dos intervalos, distribuyendo la búsqueda de los mismos entre hilos independientes. Por ahora, tiene un único hilo de ejecución que busca los primos entre 0 y 30.000.000. Ejecútelo, abra el administrador de procesos del sistema operativo, y verifique cuantos núcleos son usados por el mismo.
 
+![image](https://github.com/user-attachments/assets/40a2c620-b85f-48ed-8fa4-76774f63d4b3)
+
+8 de los nucleos son usados cunado se ejecuta el programa.
+
+
 2. Modifique el programa para que, en lugar de resolver el problema con un solo hilo, lo haga con tres, donde cada uno de éstos hará la tarcera parte del problema original. Verifique nuevamente el funcionamiento, y nuevamente revise el uso de los núcleos del equipo.
 
-3. Lo que se le ha pedido es: debe modificar la aplicación de manera que cuando hayan transcurrido 5 segundos desde que se inició la ejecución, se detengan todos los hilos y se muestre el número de primos encontrados hasta el momento. Luego, se debe esperar a que el usuario presione ENTER para reanudar la ejecución de los mismo.
+    Creaci[on de los 3 hilos, cada uno resuelve un tercio del problema original.
+    ![image](https://github.com/user-attachments/assets/ec6a92ad-84e3-4863-b277-9285c265ce45)
+
+
+    8 de los nucleos son usados cunado se ejecuta el programa.
+    ![image](https://github.com/user-attachments/assets/7a8528cf-14e0-417e-97f6-c15c829aec89)
+
+
+4. Lo que se le ha pedido es: debe modificar la aplicación de manera que cuando hayan transcurrido 5 segundos desde que se inició la ejecución, se detengan todos los hilos y se muestre el número de primos encontrados hasta el momento. Luego, se debe esperar a que el usuario presione ENTER para reanudar la ejecución de los mismo.
 
 
 
