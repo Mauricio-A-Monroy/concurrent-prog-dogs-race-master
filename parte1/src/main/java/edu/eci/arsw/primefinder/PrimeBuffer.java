@@ -6,20 +6,18 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class PrimeBuffer{
 
-    private ArrayList<Integer> primes;
+    private AtomicInteger primesCount;
 
-    public PrimeBuffer(ArrayList<Integer> primes){
-        this.primes = primes;
+    public PrimeBuffer(){
+        this.primesCount = new AtomicInteger(0);
     }
 
-    public int getPrimesSize(){
-        return this.primes.size();
+    public int getPrimeCount() {
+        return primesCount.get();
     }
 
-    public synchronized void addPrime(int prime){
-        this.primes.add(prime);
-        //System.out.println(primes);
-        notifyAll();
+    public void incrementPrimeCount() {
+        primesCount.incrementAndGet();
     }
 
     public void waitThreads(){

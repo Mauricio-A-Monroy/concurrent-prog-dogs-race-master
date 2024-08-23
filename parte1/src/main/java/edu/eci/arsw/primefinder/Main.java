@@ -21,7 +21,7 @@ public class Main {
 		**/
 
 		Scanner scanner = new Scanner(System.in);
-		MonitorThread monitorThread = new MonitorThread(1, 30000000);
+		MonitorThread monitorThread = new MonitorThread(12, 90000000);
 		monitorThread.startThreads();
 
 		while (true) {
@@ -29,7 +29,7 @@ public class Main {
 				// Espera 5 segundos
 				Thread.sleep(5000);
 
-				System.out.println(monitorThread.getPrimesSize());
+				System.out.println(monitorThread.getPrimeCount());
 				//monitorThread.stopThreads();
 				System.out.println(monitorThread.stillAlive());
 				System.out.println("Han pasado 5 segundos. Presiona Enter para continuar...");
@@ -41,7 +41,7 @@ public class Main {
 			}
 
 			if (!monitorThread.stillAlive()){
-				System.out.println("Todos los hilos han terminado, se encontraron " +  monitorThread.getPrimesSize() + " primos");
+				System.out.println("Todos los hilos han terminado, se encontraron " +  monitorThread.getPrimeCount() + " primos");
 				break;
 			}
 		}
