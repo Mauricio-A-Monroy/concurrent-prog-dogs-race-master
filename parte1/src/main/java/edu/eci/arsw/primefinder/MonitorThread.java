@@ -42,4 +42,20 @@ public class MonitorThread {
     public int getPrimesSize(){
         return primeBuffer.getPrimesSize();
     }
+
+    public boolean stillAlive(){
+        int livingThreads = 0;
+        for(Thread i : threads){
+            if(i.isAlive()){
+                livingThreads += 1;
+            }
+        }
+        boolean ans = false;
+
+        if (livingThreads == this.n){
+            ans = true;
+        }
+
+        return ans;
+    }
 }

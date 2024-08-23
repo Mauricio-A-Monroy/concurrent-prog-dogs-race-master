@@ -24,11 +24,11 @@ public class Main {
 		//monitorThread.startThreads();
 
 		Scanner scanner = new Scanner(System.in);
+		MonitorThread monitorThread = new MonitorThread(3, 30000000);
 
 		while (true) {
 			try {
 				// Espera 5 segundos
-				MonitorThread monitorThread = new MonitorThread(1, 30000000);
 				monitorThread.startThreads();
 				Thread.sleep(5000);
 
@@ -39,6 +39,10 @@ public class Main {
 
 			} catch (InterruptedException e) {
 				System.out.println("El programa fue interrumpido.");
+				break;
+			}
+
+			if (!monitorThread.stillAlive()){
 				break;
 			}
 		}
