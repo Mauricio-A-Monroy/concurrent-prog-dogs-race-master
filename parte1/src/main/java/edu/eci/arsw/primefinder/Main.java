@@ -23,7 +23,7 @@ public class Main {
 		Scanner scanner = new Scanner(System.in);
 		MonitorThread monitorThread = new MonitorThread(1, 30000000);
 		monitorThread.startThreads();
-		
+
 		while (true) {
 			try {
 				// Espera 5 segundos
@@ -39,12 +39,11 @@ public class Main {
 				System.out.println("El programa fue interrumpido.");
 				break;
 			}
-			/**
-			System.out.println(monitorThread.stillAlive());
 
 			if (!monitorThread.stillAlive()){
+				System.out.println("Todos los hilos han terminado, se encontraron " +  monitorThread.getPrimesSize() + " primos");
 				break;
-			}**/
+			}
 		}
 		
 	}
