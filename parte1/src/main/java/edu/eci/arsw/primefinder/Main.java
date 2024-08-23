@@ -20,9 +20,6 @@ public class Main {
 		pft3.start();
 		**/
 
-		//MonitorThread monitorThread = new MonitorThread(3, 30000000);
-		//monitorThread.startThreads();
-
 		Scanner scanner = new Scanner(System.in);
 		MonitorThread monitorThread = new MonitorThread(3, 30000000);
 
@@ -46,29 +43,6 @@ public class Main {
 				break;
 			}
 		}
-
-		/**
-		int stillAlive = 0;
-
-		while(stillAlive  != n){
-			for(Thread i : threads){
-				if(i.isAlive()){
-					stillAlive += 1;
-				}
-			}
-
-			if((System.currentTimeMillis() - startTime) >= 5000){
-				System.out.println(stillAlive);
-				primeBuffer.waitThreads();
-				System.out.println(primeBuffer.getPrimesSize());
-				System.out.println("Oprima enter");
-				Scanner scanner = new Scanner(System.in);
-				scanner.nextLine();
-				primeBuffer.startThreads();
-			}
-		}**/
-
-
 		
 	}
 	
