@@ -21,16 +21,17 @@ public class Main {
 		**/
 
 		Scanner scanner = new Scanner(System.in);
-		MonitorThread monitorThread = new MonitorThread(3, 30000000);
-
+		MonitorThread monitorThread = new MonitorThread(1, 30000000);
+		monitorThread.startThreads();
+		
 		while (true) {
 			try {
 				// Espera 5 segundos
-				monitorThread.startThreads();
 				Thread.sleep(5000);
 
 				System.out.println(monitorThread.getPrimesSize());
 				//monitorThread.stopThreads();
+				System.out.println(monitorThread.stillAlive());
 				System.out.println("Han pasado 5 segundos. Presiona Enter para continuar...");
 				scanner.nextLine(); // Espera a que el usuario presione Enter
 
@@ -38,10 +39,12 @@ public class Main {
 				System.out.println("El programa fue interrumpido.");
 				break;
 			}
+			/**
+			System.out.println(monitorThread.stillAlive());
 
 			if (!monitorThread.stillAlive()){
 				break;
-			}
+			}**/
 		}
 		
 	}
