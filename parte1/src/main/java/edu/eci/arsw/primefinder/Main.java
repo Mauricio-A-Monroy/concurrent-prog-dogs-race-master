@@ -3,6 +3,7 @@ package edu.eci.arsw.primefinder;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Timer;
+import java.util.TimerTask;
 
 public class Main {
 
@@ -18,29 +19,31 @@ public class Main {
 		pft2.start();
 		pft3.start();
 		**/
-		int n = 3;
-		int threadRange = 30000000 / n;
 
-		long startTime = System.currentTimeMillis();
+		//MonitorThread monitorThread = new MonitorThread(3, 30000000);
+		//monitorThread.startThreads();
 
-		ArrayList<PrimeFinderThread> threads = new ArrayList<>();
-		PrimeBuffer primeBuffer = new PrimeBuffer(new ArrayList<>());
+		Scanner scanner = new Scanner(System.in);
 
-		if(n % 2 == 0){
-			for(int i = 0; i < n; i++){
-				threads.add(new PrimeFinderThread(i * threadRange, ((i+1) * threadRange), primeBuffer));
-				threads.get(i).start();
+		while (true) {
+			try {
+				// Espera 5 segundos
+				MonitorThread monitorThread = new MonitorThread(1, 30000000);
+				monitorThread.startThreads();
+				Thread.sleep(5000);
+
+				System.out.println(monitorThread.getPrimesSize());
+				//monitorThread.stopThreads();
+				System.out.println("Han pasado 5 segundos. Presiona Enter para continuar...");
+				scanner.nextLine(); // Espera a que el usuario presione Enter
+
+			} catch (InterruptedException e) {
+				System.out.println("El programa fue interrumpido.");
+				break;
 			}
 		}
-		else {
-			for(int i = 0; i < n - 1; i++){
-				threads.add(new PrimeFinderThread(i * threadRange, ((i+1) * threadRange), primeBuffer));
-				threads.get(i).start();
-			}
-			threads.add(new PrimeFinderThread((n-1) * threadRange, 30000000, primeBuffer));
-			threads.get(n-1).start();
-		}
 
+		/**
 		int stillAlive = 0;
 
 		while(stillAlive  != n){
@@ -59,7 +62,7 @@ public class Main {
 				scanner.nextLine();
 				primeBuffer.startThreads();
 			}
-		}
+		}**/
 
 
 		
