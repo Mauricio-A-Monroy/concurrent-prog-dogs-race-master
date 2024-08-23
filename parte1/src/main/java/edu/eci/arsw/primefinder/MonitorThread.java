@@ -36,8 +36,12 @@ public class MonitorThread {
         }
     }
 
-    public void stopThreads(){
-        primeBuffer.waitThreads();
+    public void pauseThreads() {
+        primeBuffer.pauseBuffer();
+    }
+
+    public void resumeThreads() {
+        primeBuffer.resumeBuffer();
     }
 
     public int getPrimeCount(){
