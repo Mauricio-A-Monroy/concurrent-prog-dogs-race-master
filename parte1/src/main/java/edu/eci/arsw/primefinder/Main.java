@@ -21,7 +21,7 @@ public class Main {
 		**/
 
 		Scanner scanner = new Scanner(System.in);
-		MonitorThread monitorThread = new MonitorThread(4, 90000000);
+		MonitorThread monitorThread = new MonitorThread(2, 90000000);
 		monitorThread.startThreads();
 
 		while (true) {
@@ -33,7 +33,7 @@ public class Main {
 				System.out.println(monitorThread.getPrimeCount());
 				System.out.println("Han pasado 5 segundos. Presiona Enter para continuar...");
 				scanner.nextLine(); // Espera a que el usuario presione Enter
-				//System.out.println(monitorThread.getPrimeCount()); descomentar para verificar que la cantidad de primos no cambia mientras se da el enter
+				System.out.println(monitorThread.getPrimeCount()); //descomentar para verificar que la cantidad de primos no cambia mientras se da el enter
 				monitorThread.resumeThreads();
 
 			} catch (InterruptedException e) {
