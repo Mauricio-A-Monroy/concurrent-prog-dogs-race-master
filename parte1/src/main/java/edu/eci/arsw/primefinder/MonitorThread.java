@@ -1,7 +1,6 @@
 package edu.eci.arsw.primefinder;
 
 import java.util.ArrayList;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class MonitorThread {
 
@@ -14,7 +13,7 @@ public class MonitorThread {
         this.n = n;
         this.higherRange = higherRange;
         this.threads = new ArrayList<>();
-        primeBuffer = new PrimeBuffer();
+        this.primeBuffer = new PrimeBuffer(new ArrayList<>());
     }
 
     public void startThreads(){
@@ -36,16 +35,12 @@ public class MonitorThread {
         }
     }
 
-    public void pauseThreads() {
-        primeBuffer.pauseBuffer();
-    }
-
-    public void resumeThreads() {
-        primeBuffer.resumeBuffer();
+    public void turnThreads() {
+        primeBuffer.turn();
     }
 
     public int getPrimeCount(){
-        return primeBuffer.getPrimeCount();
+        return primeBuffer.getPrimes().size();
     }
 
     public boolean stillAlive(){
