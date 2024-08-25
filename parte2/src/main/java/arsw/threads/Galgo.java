@@ -12,6 +12,8 @@ public class Galgo extends Thread {
 	private int paso;
 	private Carril carril;
 	RegistroLlegada regl;
+	private static final Object pauseLock = new Object();
+	private static boolean paused = false;
 
 	public Galgo(Carril carril, String name, RegistroLlegada reg) {
 		super(name);
@@ -21,12 +23,14 @@ public class Galgo extends Thread {
 	}
 
 	public void corra() throws InterruptedException {
-		while (paso < carril.size()) {			
-			Thread.sleep(100);
-			if(!carril.getIsStop()){
-				paso++;
+		while (paso < carril.size()) {
+			synchronized (pauseLock) {
+				while (paused) {
+					pauseLock.wait();
+				}
 			}
-			carril.setPasoOn(paso);
+			Thread.sleep(100);
+			carril.setPasoOn(paso++);
 			carril.displayPasos(paso);
 			
 			if (paso == carril.size()) {
@@ -52,8 +56,17 @@ public class Galgo extends Thread {
 		}
 	}
 
-	public Carril getCarril(){
-		return this.carril;
+	public static void pauseRace() {
+		synchronized (pauseLock) {
+			paused = true;
+		}
+	}
+
+	public static void continueRace() {
+		synchronized (pauseLock) {
+			paused = false;
+			pauseLock.notifyAll();
+		}
 	}
 
 }

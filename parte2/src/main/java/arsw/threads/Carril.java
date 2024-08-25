@@ -15,7 +15,6 @@ public class Carril {
 	private Color off = Color.LIGHT_GRAY;
 	private Color stop = Color.red;
 	private Color start = Color.GREEN;
-	private boolean isStop = false;
 	/**
 	 * Pasos del carril
 	 */
@@ -87,9 +86,7 @@ public class Carril {
 	 * @param i
 	 */
 	public void setPasoOn(int i) {
-		if(!isStop && i < paso.length){
-			paso[i].setText("o");
-		}
+		paso[i].setText("o");
 	}
 
 	/**
@@ -109,9 +106,7 @@ public class Carril {
 	}
 
 	public void displayPasos(int n) {
-		if(!isStop) {
-			llegada.setText("" + n);
-		}
+		llegada.setText("" + n);
 	}
 
 	/**
@@ -123,17 +118,5 @@ public class Carril {
 		}
 		llegada.setBackground(start);
 		llegada.setText(name);
-	}
-
-	public void stop(){
-		this.isStop = true;
-	}
-
-	public void retry(){
-		this.isStop = false;
-	}
-
-	public boolean getIsStop(){
-		return isStop;
 	}
 }

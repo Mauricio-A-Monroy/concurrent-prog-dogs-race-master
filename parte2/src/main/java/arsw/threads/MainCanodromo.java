@@ -64,7 +64,7 @@ public class MainCanodromo {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         for (Galgo galgo : galgos) {
-                            galgo.getCarril().stop();
+                            galgo.pauseRace();
                         }
                         System.out.println("Carrera pausada!");
                     }
@@ -76,7 +76,7 @@ public class MainCanodromo {
                     @Override
                     public synchronized void actionPerformed(ActionEvent e) {
                         for (Galgo galgo : galgos) {
-                            galgo.getCarril().retry();
+                            galgo.continueRace();
                         }
                         System.out.println("Carrera reanudada!");
                     }
