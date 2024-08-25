@@ -64,11 +64,29 @@ Taller.
     dichas inconsistencias). A partir de esto, identifique las regiones
     críticas () del programa.
 
-3.  Utilice un mecanismo de sincronización para garantizar que a dichas
+    Una de las inconsistencias es que varios galgos pueden compartir posición, en este caso, 4 galgos quedaron en la primera posición:
+    
+    ![image](https://github.com/user-attachments/assets/e5f89ad8-10bf-4abe-85dc-ae2ff8481f10)
+
+
+    otra inconsistencia es cuando se muestra el galgo ganador, la cantidad de galgos varia:
+    
+    ![image](https://github.com/user-attachments/assets/e7694c79-06d9-4228-ab54-0121da89c9fb)
+    ![image](https://github.com/user-attachments/assets/5f19ee5e-1a62-4154-a0e5-0e83490a6689)
+    ![image](https://github.com/user-attachments/assets/5880afa8-8e7e-4b3b-8bd5-8bb07eef3330)
+
+
+    Los botones "stop" y "continue" unicamente hacen que aparezca un mensaje en consola
+
+    ![image](https://github.com/user-attachments/assets/d173bacf-8d05-40f0-b02e-e791d7551e5f)
+
+
+
+4.  Utilice un mecanismo de sincronización para garantizar que a dichas
     regiones críticas sólo acceda un hilo a la vez. Verifique los
     resultados.
 
-4.  Implemente las funcionalidades de pausa y continuar. Con estas,
+5.  Implemente las funcionalidades de pausa y continuar. Con estas,
     cuando se haga clic en ‘Stop’, todos los hilos de los galgos
     deberían dormirse, y cuando se haga clic en ‘Continue’ los mismos
     deberían despertarse y continuar con la carrera. Diseñe una solución que permita hacer esto utilizando los mecanismos de sincronización con las primitivas de los Locks provistos por el lenguaje (wait y notifyAll).
