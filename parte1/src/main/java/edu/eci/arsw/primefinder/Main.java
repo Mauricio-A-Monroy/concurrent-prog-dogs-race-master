@@ -21,29 +21,29 @@ public class Main {
 		**/
 
 		Scanner scanner = new Scanner(System.in);
-		MonitorThread monitorThread = new MonitorThread(4, 90000000);
+		MonitorThread monitorThread = new MonitorThread(100, 30000000);
 		monitorThread.startThreads();
 
-		while (true) {
+		while (monitorThread.stillAlive()) {
 			try {
 				// Espera 5 segundos
 				Thread.sleep(5000);
 
-				monitorThread.pauseThreads();
+				monitorThread.turnThreads();
 				System.out.println(monitorThread.getPrimeCount());
 				System.out.println("Han pasado 5 segundos. Presiona Enter para continuar...");
 				scanner.nextLine(); // Espera a que el usuario presione Enter
 				//System.out.println(monitorThread.getPrimeCount()); descomentar para verificar que la cantidad de primos no cambia mientras se da el enter
-				monitorThread.resumeThreads();
+				monitorThread.turnThreads();
 
-			} catch (InterruptedException e) {
+			}
+			catch (InterruptedException e) {
 				System.out.println("El programa fue interrumpido.");
 				break;
 			}
 
 			if (!monitorThread.stillAlive()){
 				System.out.println("Todos los hilos han terminado, se encontraron " +  monitorThread.getPrimeCount() + " primos");
-				break;
 			}
 		}
 		

@@ -1,47 +1,35 @@
 package edu.eci.arsw.primefinder;
 
-import java.util.ArrayList;
-import java.util.TimerTask;
-import java.util.concurrent.atomic.AtomicInteger;
+import java.util.List;
 
-public class PrimeBuffer{
-
-    private AtomicInteger primesCount;
+public class PrimeBuffer {
+    private List<Integer> primes;
     private boolean isPaused;
-    private final Object pauseLock = new Object();
 
-    public PrimeBuffer(){
-        this.primesCount = new AtomicInteger(0);
+    public PrimeBuffer(List<Integer> primes){
+        this.primes = primes;
         this.isPaused = false;
     }
 
-    public int getPrimeCount() {
-        return primesCount.get();
-    }
-
-    public void incrementPrimeCount() {
-        synchronized (pauseLock) {
-            while (isPaused) {
-                try {
-                    pauseLock.wait();  // Pausa el hilo si está marcado como pausado
-                } catch (InterruptedException e) {
-                    Thread.currentThread().interrupt();
-                }
+    public synchronized void addPrime(int prime){
+        while(isPaused){
+            try{
+                wait();
             }
-            primesCount.incrementAndGet();
+            catch(InterruptedException e){
+                System.out.println("An exception was caught");
+            }
         }
+        this.primes.add(prime);
+        notifyAll();
     }
 
-    public void pauseBuffer() {
-        synchronized (pauseLock) {
-            this.isPaused = true;
-        }
+    public synchronized void turn(){
+        this.isPaused = !this.isPaused;
+        notifyAll();
     }
 
-    public void resumeBuffer() {
-        synchronized (pauseLock) {
-            this.isPaused = false;
-            pauseLock.notifyAll();  // Despertar todos los hilos que están en espera
-        }
+    public List<Integer> getPrimes(){
+        return this.primes;
     }
 }
