@@ -80,6 +80,16 @@ Taller.
 
     ![image](https://github.com/user-attachments/assets/d173bacf-8d05-40f0-b02e-e791d7551e5f)
 
+    Regiones críticas:
+
+
+    - Parte del método corra() de la clase Galgo, en especial la liena 29 y 30, ya que es aquí donde se determinan las posiciones de llegada de los galgos
+        ![image](https://github.com/user-attachments/assets/adf4c92b-9104-41bb-a750-17d597469abd)
+
+    - Los métodos getUltimaPosicionAlcanzada() y setUltimaPosicionAlcanzada() en la clase RegistroLlegada, es aquí donde se está almacendo la ultima posición alcanzada         por alguno de los galgos.
+      ![image](https://github.com/user-attachments/assets/01eb0f6e-6e29-4123-8db4-c4848514c326)
+
+
 
 
 4.  Utilice un mecanismo de sincronización para garantizar que a dichas
