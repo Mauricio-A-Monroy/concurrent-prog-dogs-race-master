@@ -29,20 +29,21 @@ public class Galgo extends Thread {
 					pauseLock.wait();
 				}
 			}
+
 			Thread.sleep(100);
 			carril.setPasoOn(paso++);
 			carril.displayPasos(paso);
 			
 			if (paso == carril.size()) {
-				synchronized (regl){
 					carril.finish();
-					AtomicInteger ubicacion=regl.getUltimaPosicionAlcanzada();
-					regl.setUltimaPosicionAlcanzada();
-					System.out.println("El galgo "+this.getName()+" llego en la posicion "+ubicacion.get());
-					if (ubicacion.get() == 1){
-						regl.setGanador(this.getName());
+					synchronized (regl){
+						int ubicacion=regl.getUltimaPosicionAlcanzada();
+						regl.setUltimaPosicionAlcanzada(ubicacion+1);
+						System.out.println("El galgo "+this.getName()+" llego en la posicion "+ubicacion);
+						if (ubicacion == 1){
+							regl.setGanador(this.getName());
+						}
 					}
-				}
 			}
 		}
 	}
@@ -56,13 +57,13 @@ public class Galgo extends Thread {
 		}
 	}
 
-	public static void pauseRace() {
+	public void pauseRace() {
 		synchronized (pauseLock) {
 			paused = true;
 		}
 	}
 
-	public static void continueRace() {
+	public void continueRace() {
 		synchronized (pauseLock) {
 			paused = false;
 			pauseLock.notifyAll();

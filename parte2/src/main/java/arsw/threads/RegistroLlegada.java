@@ -4,9 +4,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class RegistroLlegada {
 
-	private AtomicInteger ultimaPosicionAlcanzada= new AtomicInteger(0);
-	private final Object lock = new Object();
-
+	private int ultimaPosicionAlcanzada = 1;
 	private String ganador=null;
 	
 	public String getGanador() {
@@ -17,12 +15,12 @@ public class RegistroLlegada {
 		this.ganador = ganador;
 	}
 
-	public AtomicInteger getUltimaPosicionAlcanzada() {
+	public int getUltimaPosicionAlcanzada() {
 		return ultimaPosicionAlcanzada;
 	}
 
-	public void setUltimaPosicionAlcanzada() {
-		this.ultimaPosicionAlcanzada.incrementAndGet();
+	public void setUltimaPosicionAlcanzada(int ultimaPosicionAlcanzada) {
+		this.ultimaPosicionAlcanzada = ultimaPosicionAlcanzada;
 	}
 
 }
