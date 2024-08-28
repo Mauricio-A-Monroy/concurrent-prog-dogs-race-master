@@ -1,36 +1,35 @@
 package edu.eci.arsw.primefinder;
 
-import java.util.ArrayList;
-import java.util.TimerTask;
-import java.util.concurrent.atomic.AtomicInteger;
+import java.util.List;
 
-public class PrimeBuffer{
+public class PrimeBuffer {
+    private List<Integer> primes;
+    private boolean isPaused;
 
-    private ArrayList<Integer> primes;
-
-    public PrimeBuffer(ArrayList<Integer> primes){
+    public PrimeBuffer(List<Integer> primes){
         this.primes = primes;
-    }
-
-    public int getPrimesSize(){
-        return this.primes.size();
+        this.isPaused = false;
     }
 
     public synchronized void addPrime(int prime){
-        this.primes.add(prime);
-        //System.out.println(primes);
-        notifyAll();
-    }
-
-    public void waitThreads(){
-        try {
-            wait();
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
+        while(isPaused){
+            try{
+                wait();
+            }
+            catch(InterruptedException e){
+                System.out.println("An exception was caught");
+            }
         }
+        this.primes.add(prime);
+        notifyAll();
     }
 
-    public void startThreads(){
+    public synchronized void turn(){
+        this.isPaused = !this.isPaused;
         notifyAll();
+    }
+
+    public List<Integer> getPrimes(){
+        return this.primes;
     }
 }
