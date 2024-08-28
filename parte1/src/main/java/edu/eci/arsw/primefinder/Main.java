@@ -21,7 +21,7 @@ public class Main {
 		 **/
 
 		Scanner scanner = new Scanner(System.in);
-		MonitorThread monitorThread = new MonitorThread(100, 30000000);
+		MonitorThread monitorThread = new MonitorThread(50, 30000000);
 		monitorThread.startThreads();
 
 		while (monitorThread.stillAlive()) {

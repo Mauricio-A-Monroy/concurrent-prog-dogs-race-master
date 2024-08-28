@@ -21,16 +21,16 @@ public class MonitorThread {
 
         if(n % 2 == 0){
             for(int i = 0; i < n; i++){
-                threads.add(new PrimeFinderThread(i * threadRange, (i+1) * threadRange, primeBuffer));
+                threads.add(new PrimeFinderThread((i * threadRange) + 1, (i+1) * threadRange, primeBuffer));
                 threads.get(i).start();
             }
         }
         else {
             for(int i = 0; i < n - 1; i++){
-                threads.add(new PrimeFinderThread(i * threadRange, (i+1) * threadRange, primeBuffer));
+                threads.add(new PrimeFinderThread((i * threadRange) + 1, (i+1) * threadRange, primeBuffer));
                 threads.get(i).start();
             }
-            threads.add(new PrimeFinderThread((n-1) * threadRange, higherRange, primeBuffer));
+            threads.add(new PrimeFinderThread(((n-1) * threadRange) + 1, higherRange, primeBuffer));
             threads.get(n-1).start();
         }
     }
